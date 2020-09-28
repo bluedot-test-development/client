@@ -8,17 +8,15 @@ import { history } from "./index";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
+
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  ul{
-    padding-inline-start: 0;
-  }
 `;
 
 function App() {
   return (
-    <ErrorBoundary>
+    <ErrorBoundary FallbackComponent={NotFound}>
       <GlobalStyle />
       <ConnectedRouter history={history}>
         <Switch>

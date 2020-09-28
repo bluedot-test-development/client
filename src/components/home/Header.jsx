@@ -1,14 +1,21 @@
 import React from "react";
 import HeaderRight from "./HeaderRight";
 import Logo from "./Logo";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const HeaderBlock = styled.div`
+
   width: 100vw;
   color: white;
-  background: linear-gradient(black, transparent);
-  position: fixed;
+  background: black;
   z-index: 99;
+  
+  ${(props) =>
+    props.type &&
+    css`
+      position: fixed;
+      background: linear-gradient(black, transparent);
+    `}
 
   & *{
     user-select: none;
@@ -32,7 +39,6 @@ const HeaderBlock = styled.div`
 
   & ul {
     display: flex;
-    list-style: none;
     font-size: 1rem;
     li {
       padding: 0 15px;
@@ -47,9 +53,9 @@ const HeaderBlock = styled.div`
   }
 `;
 
-export default function Header() {
+export default function Header(props) {
   return (
-    <HeaderBlock>
+    <HeaderBlock type={props.type}>
       <header className="header-wrapper">
         <div className="header-left">
           <Logo />

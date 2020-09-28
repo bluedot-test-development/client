@@ -1,5 +1,6 @@
+import { push } from "connected-react-router";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 const LogoBlock = styled.div`
@@ -13,16 +14,16 @@ const LogoBlock = styled.div`
     height: 1rem;
     border-radius: 1rem;
     background-color: blue;
+    margin: 0 0.7rem;
   }
 `;
 
 export default function Logo() {
+  const dispatch = useDispatch();
   return (
-    /* <Link to="/">*/
-    <LogoBlock>
+    <LogoBlock onClick={() => dispatch(push("/"))}>
       <div />
       <h1>bluedot</h1>
     </LogoBlock>
-    /* </Link> */
   );
 }

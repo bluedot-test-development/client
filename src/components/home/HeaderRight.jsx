@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import Portal from "./Portal";
 import { Avatar, IconButton } from "@material-ui/core";
-import PersonalModal from "../PersonalModal";
+import PersonalModal from "../home/PersonalModal";
 import styled from "styled-components";
+import UploadModal from "../profile/UploadModal";
 
 const HeaderRightBlock = styled.div`
   display: flex;
@@ -44,6 +44,8 @@ const HeaderRightBlock = styled.div`
 export default function HeaderRight() {
   const [login, setLogin] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <HeaderRightBlock>
       {login ? (
@@ -53,7 +55,13 @@ export default function HeaderRight() {
         </>
       ) : (
         <>
-          <button className="blue">업로드</button>
+          <button
+            className="blue"
+            onClick={() => setModalVisible(!modalVisible)}
+          >
+            업로드
+          </button>
+
           <div>
             <Avatar id="Avatar" onClick={() => setVisible(!visible)} />
             {visible && <PersonalModal />}
