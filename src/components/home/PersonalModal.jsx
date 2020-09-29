@@ -3,6 +3,7 @@ import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const PersonalModalBlock = styled.div`
   position: relative;
@@ -30,44 +31,55 @@ const PersonalModalBlock = styled.div`
     width: 150px;
 
     li {
-      font-size: 0.7rem;
-      display: flex;
-      align-items: center;
       padding: 8px 10px;
-      div {
-        margin-left: 10px;
-      }
       &:not(:last-child) {
         border-bottom: 1px solid gray;
+      }
+      a {
+        display: flex;
+        align-items: center;
+        div {
+          margin-left: 10px;
+          font-size: 0.7rem;
+        }
       }
     }
   }
 `;
 
 export default function PersonalModal() {
-  const dispatch = useDispatch();
   return (
     <PersonalModalBlock>
       <ul className="menu-list">
-        <li onClick={() => dispatch(push("/profile"))}>
-          <AccountCircleRoundedIcon fontSize="small" />
-          <div>마이페이지</div>
+        <li>
+          <Link to="/profile">
+            <AccountCircleRoundedIcon fontSize="small" />
+            <div>마이페이지</div>
+          </Link>
         </li>
         <li>
-          <AccountCircleRoundedIcon fontSize="small" />
-          <div>로그아웃</div>
+          <Link to="/profile">
+            <AccountCircleRoundedIcon fontSize="small" />
+            <div>로그아웃</div>
+          </Link>
         </li>
         <li>
-          <AccountCircleRoundedIcon fontSize="small" />
-          <div>서비스 이용약관</div>
+          <Link to="/profile">
+            <AccountCircleRoundedIcon fontSize="small" />
+            <div>서비스 이용약관</div>
+          </Link>
         </li>
         <li>
-          <AccountCircleRoundedIcon fontSize="small" />
-          <div>개인정보 처리방침</div>
+          <Link to="/profile">
+            <AccountCircleRoundedIcon fontSize="small" />
+            <div>개인정보 처리방침</div>
+          </Link>
         </li>
         <li>
-          <AccountCircleRoundedIcon fontSize="small" />
-          <div>설정</div>
+          <Link to="/profile">
+            <AccountCircleRoundedIcon fontSize="small" />
+            <div>설정</div>
+          </Link>
         </li>
       </ul>
     </PersonalModalBlock>

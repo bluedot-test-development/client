@@ -1,31 +1,44 @@
-import React from "react";
+import React, { useEffect } from 'react';
+import Header from '../components/home/Header';
+import UserContent from '../components/profile/UserContent';
+import ProfileCard from '../components/profile/ProfileCard';
+import { useDispatch, useSelector } from 'react-redux';
 
-import styled from "styled-components";
-
-import Header from "../components/home/Header";
-import UserContent from "../components/profile/UserContent";
-import ProfileCard from "../components/profile/ProfileCard";
+import styled, { css } from 'styled-components';
+import { startGetUser } from '../redux/module/users';
+import { Redirect } from 'react-router-dom';
 
 const ProfileBlock = styled.div`
-  .profile-bg {
-    width: 100vw;
-    height: 26vh;
-    background: url(https://images.unsplash.com/photo-1578070181910-f1e514afdd08?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1404&q=80);
-    background-size: cover;
-  }
   .profile-content {
     display: flex;
     margin: 0 10vw;
   }
 `;
+const ProfileBgBlock = styled.div`
+  width: 100vw;
+  height: 26vh;
+  background-size: contain;
+  background-position: center;
+  ${props => css`
+    background-image: url(${props.source});
+  `}
+`;
 
-export default function Profile() {
+export default function Profile(props) {
+  const user = useSelector(state => state.users.profileUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(startGetUser());
+  }, [dispatch]);
+
+  // if (!user) return <Redirect to="/profile" />;
   return (
     <ProfileBlock>
       <Header />
-      <div className="profile-bg" />
+      <ProfileBgBlock source={user && user.bannerImg} />
       <div className="profile-content">
-        <ProfileCard />
+        <ProfileCard user={user} />
         <UserContent />
       </div>
     </ProfileBlock>

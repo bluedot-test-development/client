@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import UploadModal from "../profile/UploadModal";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import UploadModal from '../profile/UploadModal';
+import styled, { css } from 'styled-components';
+import { ThumbnailBlock } from '../../styles/ThumbnailBlock';
 
 const ProfileCardBlock = styled.div`
   &.profile-card {
     transform: translate3d(0, -25%, 0);
-    background: lightgray;
-    border-radius: 3px;
-    width: 10rem;
+    background: #eee;
+    border-radius: 8px;
+    min-width: 12rem;
     height: 100%;
     padding: 1.2rem;
 
@@ -16,14 +17,6 @@ const ProfileCardBlock = styled.div`
     align-items: center;
     color: dimgray;
 
-    .thumbnail {
-      background: url(https://vignette.wikia.nocookie.net/xmenmovies/images/9/94/Deadpool_Textless.jpg/revision/latest?cb=20200608174908);
-      background-size: contain;
-      background-position: center;
-      border-radius: 4rem;
-      width: 4rem;
-      height: 4rem;
-    }
     .summary {
       text-align: center;
     }
@@ -49,53 +42,54 @@ const ProfileCardBlock = styled.div`
       padding: 8px;
       width: 100%;
     }
-    [color="primary"] {
+    [color='primary'] {
       background: blue;
       color: white;
     }
-    [color="normal"] {
+    [color='normal'] {
       background: white;
     }
   }
 `;
 
-export default function ProfileCard() {
+export default function ProfileCard({ user }) {
   const [modal, setModal] = useState({
     isModalOn: false,
     type: null,
   });
 
-  const onModal = (e) => {
+  const onModal = e => {
     setModal({
       isModalOn: true,
       type: [e.currentTarget.name],
     });
   };
 
-  const offModal = (e) => {
+  const offModal = e => {
     if (e.target !== e.currentTarget) return;
     setModal({
       isModalOn: false,
       type: null,
     });
   };
-
+  if (!user) return <div></div>;
   return (
     <>
       <ProfileCardBlock className="profile-card">
-        <div className="thumbnail"></div>
+        {+user.isArtist && <h2>⭐</h2>}
+        <ThumbnailBlock img={user.img} size="4" />
         <div className="summary">
-          <h3>레이놀즈</h3>
+          <h3>{user.name}</h3>
           <div>아티스트,랩퍼</div>
         </div>
         <div className="f-index">
           <div className="following">
             <div className="following-title">팔로우 수</div>
-            <div className="following-count">123</div>
+            <div className="following-count">{user.followingCount}</div>
           </div>
           <div className="follower">
             <div className="follower-title">팔로워 수</div>
-            <div className="follower-count">312</div>
+            <div className="follower-count">{user.followedCount}</div>
           </div>
         </div>
         <div className="profile-buttons">

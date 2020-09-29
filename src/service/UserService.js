@@ -10,6 +10,20 @@ class UserService {
 
     return data;
   }
+  static async getPosts() {
+    const { data } = await axios({
+      method: "GET",
+      url: `${USER_URI}/post`,
+    });
+    return data;
+  }
+  static async getUser() {
+    const { data } = await axios({
+      method: "GET",
+      url: `${USER_URI}/profile`,
+    });
+    return data;
+  }
 }
 
 export default UserService;

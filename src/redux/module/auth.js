@@ -1,3 +1,5 @@
+import { put } from "redux-saga/effects";
+
 const prefix = "bluedot/auth";
 
 const START = `${prefix}START`;
@@ -38,3 +40,27 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+//saga-actions
+// const START_GET_USER = `START_GET_USER`;
+
+// export const startGetUser = () => ({
+//   type: START_GET_USER,
+// });
+
+// //saga-reducer
+
+// function* startGetUserSaga() {
+//   try {
+//     yield put(loginStart());
+//     console.log("??");
+//     const logins = yield call(UserService.getUser);
+//     yield put(loginSuccess(user));
+//   } catch (error) {
+//     yield put(loginFail(error));
+//   }
+// }
+
+// export function* postSaga() {
+//   yield takeLatest(START_GET_USER, startGetPostsaga);
+// }

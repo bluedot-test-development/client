@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const SliderContentBlock = styled.div`
   & .slider-card-desc-wrapper {
@@ -10,8 +10,7 @@ const SliderContentBlock = styled.div`
   & .slider-card-desc {
     position: absolute;
     top: 300px;
-    right: 60px;
-    padding: 0 10vw;
+    right: 15vw;
     color: white;
     width: 20vw;
     h2 {
@@ -22,7 +21,7 @@ const SliderContentBlock = styled.div`
     }
   }
   & .hero-background {
-    background-image: url("/image/main-hero.png");
+    background-image: url('/image/main-hero.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 65% 30%;
@@ -36,6 +35,12 @@ const SliderContentBlock = styled.div`
     color: white;
     padding: 0.7rem 2rem;
     cursor: pointer;
+    &:active,
+    &:hover {
+      border: transparent 1px solid;
+      background: white;
+      color: black;
+    }
   }
 `;
 
