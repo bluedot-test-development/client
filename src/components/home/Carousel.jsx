@@ -130,6 +130,7 @@ export default function Carousel(props) {
       },
     ],
   };
+  if (!artists) return <div></div>;
   return (
     <CarouselBlock>
       <h1>{props.name}</h1>
